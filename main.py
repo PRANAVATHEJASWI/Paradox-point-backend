@@ -5,6 +5,9 @@ from auth import hash_password, verify_password
 from bson import ObjectId
 
 app = FastAPI()
+@app.get("/")
+def root():
+    return {"status": "working fine"}
 
 # ➕ Register User
 @app.post("/register", status_code=201)
