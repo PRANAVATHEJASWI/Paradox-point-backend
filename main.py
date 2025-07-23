@@ -68,4 +68,16 @@ async def delete_user(email: str):
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="User not found")
     return {"message": "User deleted"}
-
+@app.get("/user/{email}", response_model=UserOut)
+async def get_user(email: str):
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {
+        "id": str(user["_id"]),
+        "name": user["name"],
+        "email": user["email"],
+        "mobile_number": user["mobile_number"],
+        "age": user["age"],
+    }
