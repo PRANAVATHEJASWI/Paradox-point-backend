@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://paradox-point.vercel.app/"
+        "https://paradox-point.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
