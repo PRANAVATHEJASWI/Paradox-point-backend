@@ -11,7 +11,10 @@ def root():
     return {"status": "working fine"}
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # or use ["*"] during development
+    allow_origins=[
+        "http://localhost:3000",
+        "https://paradox-point.vercel.app/"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
