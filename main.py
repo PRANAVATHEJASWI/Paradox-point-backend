@@ -3,12 +3,19 @@ from models import UserCreate, UserLogin, ResetPassword, UserOut
 from database import users_collection
 from auth import hash_password, verify_password
 from bson import ObjectId
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 @app.get("/")
 def root():
     return {"status": "working fine"}
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # or use ["*"] during development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ➕ Register User
 @app.post("/register", status_code=201)
 async def register_user(user: UserCreate):
